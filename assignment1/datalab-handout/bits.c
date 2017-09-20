@@ -1,7 +1,7 @@
 /* 
  * CS:APP Data Lab 
  * 
- * <Please put your name and userid here>
+ * Adrian Hirt hirta
  * 
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -175,17 +175,17 @@ NOTES:
  *   Rating: 1
  */
 int bitAnd(int x, int y) {
-  return 2;
+	return ~(~x | ~y);
 }
 /* 
  * bitXor - x^y using only ~ and & 
  *   Example: bitXor(4, 5) = 1
  *   Legal ops: ~ &
- *   Max ops: 14
+ *   Max ops: 13
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return 2;
+	return ~(~(x & ~(x & y)) & ~(y & ~(x & y)));
 }
 /* 
  * isEqual - return 1 if x == y, and 0 otherwise 
