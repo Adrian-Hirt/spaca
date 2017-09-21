@@ -185,8 +185,7 @@ int bitAnd(int x, int y) {
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-	int c = ~(x & y);
-	return ~(~(x & c) & ~(y & c));
+	return ~(x & y) & ~(~x & ~y);
 }
 /* 
  * isEqual - return 1 if x == y, and 0 otherwise 
@@ -196,7 +195,7 @@ int bitXor(int x, int y) {
  *   Rating: 2
  */
 int isEqual(int x, int y) {
-  return 2;
+  return !(x^y);
 }
 /* 
  * getByte - Extract byte n from word x
@@ -207,7 +206,8 @@ int isEqual(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  return 2;
+	int c = (x >> 8 * n) & 0xFF;
+	return c;
 }
 /* 
  * fitsBits - return 1 if x can be represented as an 
@@ -218,8 +218,8 @@ int getByte(int x, int n) {
  *   Max ops: 15
  *   Rating: 2
  */
-int fitsBits(int x, int n) {
-  return 2;
+int fitsBits(int x, int n) {  
+	return 2;
 }
 /* 
  * anyEvenBit - return 1 if any even-numbered bit in word set to 1
