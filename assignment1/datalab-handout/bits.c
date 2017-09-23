@@ -206,7 +206,7 @@ int isEqual(int x, int y) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-	int c = (x >> 8 * n) & 0xFF;
+	int c = (x >> (n << 3)) & 0xFF;
 	return c;
 }
 /* 
@@ -229,7 +229,9 @@ int fitsBits(int x, int n) {
  *   Rating: 2
  */
 int anyEvenBit(int x) {
-  return 2;
+  int temp = 0x55 | (0x55 << 8);
+	int bitMask = (temp << 16) | temp;
+	return !!(x & bitMask);
 }
 /*
  * bitCount - returns count of number of 1's in word
