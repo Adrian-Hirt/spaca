@@ -2,6 +2,7 @@
 #define ASSIGNMENT2_H
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void reverse_array(uint32_t arr[], unsigned int len);
 
