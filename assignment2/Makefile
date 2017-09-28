@@ -1,5 +1,8 @@
-clean:
-	rm -f *.o reverse
+CC = gcc
+CFLAGS = -O -Wall -std=c99
 
-reverse:
-	gcc -O -Wall -std=c99 -o reverse reverse_array.c	
+clean:
+	rm -f *.out reverse whitespace test
+
+test:
+	$(CC) $(CFLAGS) -o test test.c reverse_array.c whitespace_separated_word.c
