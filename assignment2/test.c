@@ -27,10 +27,10 @@ void test_reverse() {
 
 void test_whitespace() {
 	printf("---------- Test Whitespace ----------\n");
-	char *str = "Lorem ipsum dolor sit amet";
-	char *ptr = "";
+	char *str = "Programming in C is difficult, but also a lot of fun!";
+	char *ptr = NULL;
 	char **output = &ptr;
 	int res = first_word(str, output);
 	printf("Length of the word is %i \n", res);
-	printf("Word is %p \n", &output); 
+	printf("The word is %s \n", *output);
 }
