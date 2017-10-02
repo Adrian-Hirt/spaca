@@ -1,24 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-typedef struct Node Node;
-typedef struct Tree Tree;
-
-void test();
-
-void init();
-void insert(int val);
-bool lookup(int val);
+#include "bst.h"
 
 Tree* tree;
-
-int main() {
-	init();
-	printf("tree_root: %p \n", tree);
-	return 0;
-}
-
 
 // Define the Node structure
 // @fields: 
@@ -50,30 +32,63 @@ void init() {
 // @params: int val => Value to enter into the tree
 // @returns: void
 void insert(int val) {
-
+	if(tree->root == NULL) {
+		Node *newRoot = malloc(sizeof(Node));
+		newRoot->value = val;
+		tree->root = newRoot;
+		return;
+	}
+	Node *current = tree->root;
+	Node *parent;
+	bool inLeftSubTree;
+		
+	while(current != NULL) {
+		if(current->value == val) {
+			// value already in tree, returning
+			return;
+		}
+		// right subtree
+		else if(current->value < val) {
+			parent = current;
+			current = current->right;
+			inLeftSubTree = false;
+		}
+		// left subtree
+		else {
+			parent = current;
+			current = current->left;
+			inLeftSubTree = true;
+		}
+	}
+	Node *newNode = malloc(sizeof(Node));
+	newNode->value = val;
+	if(inLeftSubTree) {
+		parent->left = newNode;
+	}
+	else {
+		parent->right = newNode;
+	}	
 }
 
 // Search the value passed as param in the tree
 // @params: int val => Value to search for in the search tree
 // @returns: true if the value was found in the tree, false otherwise
 bool lookup(int val) { 
+	if(tree->root == NULL) {
+		return false;
+	}
+	Node *current = tree->root;
+
+	while(current != NULL) {
+		if(current->value == val) {
+			return true;
+		}
+		if(current->value < val) {
+			current = current->right;
+		}
+		else {
+			current = current->left;
+		}
+	}	
 	return false;
-}
-
-// run some tests
-void test() {
-	Node* first = malloc(sizeof(Node));
-	first->value = 42;
-
-	printf("val is %i \n", first->value);
-	printf("right is %p \n", first->right);
-
-	Node* second = malloc(sizeof(Node));
-	second->value = 1337;
-
-	printf("val is %i \n", second->value);
-	first-> right = second;
-
-	printf("right is %p \n", first->right);
-	printf("value of right is %i \n", first->right->value);
 }
