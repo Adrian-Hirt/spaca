@@ -2,10 +2,12 @@
 
 void test_reverse();
 void test_whitespace();
+void test_endian();
 
 int main() {
 	test_reverse();
 	test_whitespace();
+	test_endian();
 	return 0;
 }
 
@@ -33,4 +35,9 @@ void test_whitespace() {
 	int res = first_word(str, output);
 	printf("Length of the word is %i \n", res);
 	printf("The word is %s \n", *output);
+}
+
+void test_endian() {
+	printf("---------- Test Endian ----------\n");
+	is_little_endian();
 }
