@@ -39,5 +39,6 @@ void test_whitespace() {
 
 void test_endian() {
 	printf("---------- Test Endian ----------\n");
-	is_little_endian();
+	bool res =	is_little_endian();
+	res ? printf("The machine is little endian!\n") : printf("The machine is big-endian!\n");
 }

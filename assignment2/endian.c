@@ -1,8 +1,14 @@
 #include "assignment2.h"
 
 bool is_little_endian() {
-	char a = 'a';
-	printf("a is %b as number \n", a);
+	int a = 1;
 
-	return false;
+	char *arr = (char *)&a;
+
+	if((int)arr[0] == 1) {
+		return true;
+	}
+	else {
+		return false;
+	} 
 }
