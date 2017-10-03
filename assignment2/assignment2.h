@@ -11,4 +11,7 @@ int first_word(char *input_string, char **output_word);
 
 bool is_little_endian();
 
+int compute(int val);
+
+void iterate(int (*f)(int), int arr[], int len);
 #endif /* ASSIGNMENT2_H */

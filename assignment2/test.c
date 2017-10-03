@@ -3,11 +3,13 @@
 void test_reverse();
 void test_whitespace();
 void test_endian();
+void test_function_pointer();
 
 int main() {
 	test_reverse();
 	test_whitespace();
 	test_endian();
+	test_function_pointer();
 	return 0;
 }
 
@@ -41,4 +43,24 @@ void test_endian() {
 	printf("---------- Test Endian ----------\n");
 	bool res =	is_little_endian();
 	res ? printf("The machine is little endian!\n") : printf("The machine is big-endian!\n");
+}
+
+void test_function_pointer() {
+	printf("---------- Test Function Pointer ----------\n");
+	int arr[] = {2, -3, -4, 42, 13, 6, -12, 8, 1337, -1};
+	int len = 10;
+	int (*function_pointer)(int);
+	function_pointer = &compute;
+
+	for(int i = 0; i < len; i++) {
+		printf("%i ", arr[i]);
+	}
+	printf("\n");
+
+	iterate(function_pointer, arr, len);
+
+	for(int i = 0; i < len; i++) {
+		printf("%i ", arr[i]);
+	}
+	printf("\n");
 }
