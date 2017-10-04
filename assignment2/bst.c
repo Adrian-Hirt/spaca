@@ -22,7 +22,7 @@ struct Tree {
 
 // Initialize a new tree
 // @params: void
-// @returns: a pointer to the created tree
+// @returns: void
 void init() {
 	tree = malloc(sizeof(Tree));
 	tree->root = NULL;
