@@ -5,8 +5,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-typedef struct Node Node;
-typedef struct Tree Tree;
+typedef struct node {
+	int value;
+	struct node *left;	
+	struct node *right;
+} node_t;
+
+typedef struct tree {
+	node_t *root;
+} tree_t;
+
+tree_t* tree;
 
 void init();
 void insert(int val);

@@ -1,30 +1,10 @@
 #include "bst.h"
 
-Tree* tree;
-
-// Define the Node structure
-// @fields: 
-// - int value => the value held by the node
-// - Node *left => a pointer to the node that is the left child of this node
-// - Node *right => a pointer to the node that is the right child of this node
-struct Node {
-	int value;
-	Node *left;
-	Node *right;
-};
-
-// Define the tree structure that holds the first node (root node)
-// @fields:
-// - Node *root => the root node of this tree
-struct Tree {
-	Node *root;
-};
-
 // Initialize a new tree
 // @params: void
 // @returns: void
 void init() {
-	tree = malloc(sizeof(Tree));
+	tree = malloc(sizeof(tree_t));
 	tree->root = NULL;
 }
 
@@ -33,13 +13,13 @@ void init() {
 // @returns: void
 void insert(int val) {
 	if(tree->root == NULL) {
-		Node *newRoot = malloc(sizeof(Node));
+		node_t *newRoot = malloc(sizeof(node_t));
 		newRoot->value = val;
 		tree->root = newRoot;
 		return;
 	}
-	Node *current = tree->root;
-	Node *parent;
+	node_t *current = tree->root;
+	node_t *parent;
 	bool inLeftSubTree;
 		
 	while(current != NULL) {
@@ -60,7 +40,7 @@ void insert(int val) {
 			inLeftSubTree = true;
 		}
 	}
-	Node *newNode = malloc(sizeof(Node));
+	node_t *newNode = malloc(sizeof(node_t));
 	newNode->value = val;
 	if(inLeftSubTree) {
 		parent->left = newNode;
@@ -77,7 +57,7 @@ bool lookup(int val) {
 	if(tree->root == NULL) {
 		return false;
 	}
-	Node *current = tree->root;
+	node_t *current = tree->root;
 
 	while(current != NULL) {
 		if(current->value == val) {
