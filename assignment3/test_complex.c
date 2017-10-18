@@ -3,6 +3,10 @@
 complex_t* test_struct(double a, double b);
 void test_add();
 void test_subtract();
+void test_allocate_set();
+void test_free_set();
+
+complex_set_t* set;
 
 int main() {
 	printf("------ STRUCT TEST ------\n");
@@ -13,7 +17,9 @@ int main() {
 	test_add();
 	printf("------ SUBTRACT TEST ------\n");
 	test_subtract();
-
+	printf("------ SET TEST ------\n");
+	test_allocate_set();
+	test_free_set();
 	return 0;
 }
 
@@ -94,5 +100,25 @@ void test_subtract() {
 
 }
 
+void test_allocate_set() {
+	int size = 2;
+	complex_t arr[2];
 
+	// Let's add some structs to the array (these lie on the stack!)
+	arr[0] = (complex_t) {20.0, 40.0};
+	arr[1] = (complex_t) {42.0, 21.0};
 
+	set = alloc_set(arr, size);
+
+	assert(arr[0].a == set->points[0].a);
+	assert(arr[0].b == set->points[0].b);
+	assert(arr[1].a == set->points[1].a);
+	assert(arr[1].b == set->points[1].b);
+
+	printf("The set allocation seems to work fine\n");
+
+}
+
+void test_free_set() {
+	printf("Memory should be free again. Don't knwo how to test it though\n");
+}

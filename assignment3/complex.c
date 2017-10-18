@@ -83,3 +83,52 @@ complex_t* divide(complex_t* first, complex_t* second) {
 	return new_number;
 
 }
+
+complex_set_t* alloc_set(complex_t c_arr[], int size) {
+	complex_set_t* set = malloc(sizeof(complex_set_t));
+
+	if(set == NULL) {
+		printf("Memory allocation failed!");
+		return NULL;
+	}
+
+	set->num_points_in_set = size;
+
+	complex_t* points  = malloc(size * sizeof(complex_t));
+
+	if(points == NULL) {
+		printf("Memory allocation failed!");
+		return NULL;
+	}
+
+	for(int i = 0; i < size; i++) {
+		points[i] = c_arr[i];
+	}
+
+	set->points = points;
+
+	return set;
+}
+
+void free_set(complex_set_t* set) {
+	free(set->points);
+	free(set);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
