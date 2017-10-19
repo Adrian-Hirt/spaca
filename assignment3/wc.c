@@ -31,9 +31,11 @@ int main(int argc, char* argv[])
         nc = nw = nl = 0;
         while ((c = getc(fp)) != EOF)
         {
-            /*TODO:FILL HERE
-             process the file using getc(fp)
-             */
+            nc += 1;
+						if(c == ' ' || c == '\t' || c == '\f')
+							nw += 1
+						if(c == '\n')
+							nl += 1;
         }
         /*print totals*/
         printf("%ld %ld %ld %s\n", nl, nw, nc, currfile);
